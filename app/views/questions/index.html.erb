@@ -1,0 +1,33 @@
+<h2 class="title">質問一覧</h2>
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+    <table class="table table-striped">
+      <thead class="thead-light">
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Menu</th>
+        </tr>
+      </thead>
+      <tbody>
+         <% @questions.each do |question| %>
+          <tr>
+             <td><%= question.id %></td>
+             <!--詳細確認showメソッドへ-->
+             <td><%= link_to question.title, question_path(question) %></td>
+             <td>
+               <!--引数はurlの中に埋め込まれる　IDとしても使用可能 -->
+              <%= link_to 'Edit', edit_question_path(question) %>
+              <%= link_to 'Delete', question_path(question), method: :delete, data: {confirm: 'Are you sure?' } %>
+               </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="text-center">
+      <%= link_to new_question_path do %>
+        <button class="btn btn-primary">新しく質問をする</button>
+      <% end %>
+    </div>
+  </div>
+</div>
